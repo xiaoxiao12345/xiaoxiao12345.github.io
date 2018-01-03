@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>linux_learn_10 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第10章认识bash这个shell注意 在centos 系统下 markdown 下的点（.）有点难看到，自己要注意  第十章题目情境模擬題一：由於 ~/.bash_history 僅能記錄指令，我想要在每次登出時都記錄時間，並將後續的指令 50 筆記錄下來， 可以如何處理？显示隐藏文件 l.， 退出的操作是在隐藏文件 .bash_logout里面的。在bash_logout里执行，将时间加到历史">
+<meta name="keywords" content="linux_learn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux_learn_10">
+<meta property="og:url" content="http://xiaoxiao12345.github.io/2017/11/14/linux-learn-10/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第10章认识bash这个shell注意 在centos 系统下 markdown 下的点（.）有点难看到，自己要注意  第十章题目情境模擬題一：由於 ~/.bash_history 僅能記錄指令，我想要在每次登出時都記錄時間，並將後續的指令 50 筆記錄下來， 可以如何處理？显示隐藏文件 l.， 退出的操作是在隐藏文件 .bash_logout里面的。在bash_logout里执行，将时间加到历史">
+<meta property="og:updated_time" content="2018-01-03T09:38:01.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux_learn_10">
+<meta name="twitter:description" content="第10章认识bash这个shell注意 在centos 系统下 markdown 下的点（.）有点难看到，自己要注意  第十章题目情境模擬題一：由於 ~/.bash_history 僅能記錄指令，我想要在每次登出時都記錄時間，並將後續的指令 50 筆記錄下來， 可以如何處理？显示隐藏文件 l.， 退出的操作是在隐藏文件 .bash_logout里面的。在bash_logout里执行，将时间加到历史">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://xiaoxiao12345.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-linux-learn-10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/14/linux-learn-10/" class="article-date">
+  <time datetime="2017-11-14T09:05:28.000Z" itemprop="datePublished">2017-11-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux_learn_10
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第10章认识bash这个shell"><a href="#第10章认识bash这个shell" class="headerlink" title="第10章认识bash这个shell"></a>第10章认识bash这个shell</h1><h6 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h6><ul>
+<li><em>在centos 系统下</em></li>
+<li><em>markdown 下的点（.）有点难看到，自己要注意</em></li>
+</ul>
+<h5 id="第十章题目"><a href="#第十章题目" class="headerlink" title="第十章题目"></a>第十章题目</h5><h6 id="情境模擬題一：由於-bash-history-僅能記錄指令，我想要在每次登出時都記錄時間，並將後續的指令-50-筆記錄下來，-可以如何處理？"><a href="#情境模擬題一：由於-bash-history-僅能記錄指令，我想要在每次登出時都記錄時間，並將後續的指令-50-筆記錄下來，-可以如何處理？" class="headerlink" title="情境模擬題一：由於 ~/.bash_history 僅能記錄指令，我想要在每次登出時都記錄時間，並將後續的指令 50 筆記錄下來， 可以如何處理？"></a>情境模擬題一：由於 ~/.bash_history 僅能記錄指令，我想要在每次登出時都記錄時間，並將後續的指令 50 筆記錄下來， 可以如何處理？</h6><p>显示隐藏文件 l.， 退出的操作是在隐藏文件 .bash_logout里面的。<br>在bash_logout里执行，将时间加到历史记录里 date &gt;&gt; ~/.bash_history，以及history 50 &gt;&gt; /.bash_history</p>
+<h6 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h6><h6 id="1-在-Linux-上可以找到哪些-shell-舉出三個-？那個檔案記錄可用的-shell-？而-Linux-預設的-shell-是？"><a href="#1-在-Linux-上可以找到哪些-shell-舉出三個-？那個檔案記錄可用的-shell-？而-Linux-預設的-shell-是？" class="headerlink" title="1.在 Linux 上可以找到哪些 shell(舉出三個) ？那個檔案記錄可用的 shell ？而 Linux 預設的 shell 是？"></a>1.在 Linux 上可以找到哪些 shell(舉出三個) ？那個檔案記錄可用的 shell ？而 Linux 預設的 shell 是？</h6><p>kshell ,sh,cshell,档案记录用 etc/shells   ，linux预设的shell是、bin/bash</p>
+<h6 id="2-你輸入一串指令之後，發現前面寫的一長串資料是錯的，你想要刪除游標所在處到最前面的指令串內容，應該如何處理？"><a href="#2-你輸入一串指令之後，發現前面寫的一長串資料是錯的，你想要刪除游標所在處到最前面的指令串內容，應該如何處理？" class="headerlink" title="2.你輸入一串指令之後，發現前面寫的一長串資料是錯的，你想要刪除游標所在處到最前面的指令串內容，應該如何處理？"></a>2.你輸入一串指令之後，發現前面寫的一長串資料是錯的，你想要刪除游標所在處到最前面的指令串內容，應該如何處理？</h6><p>[ctrl]+u/[ctrl]+k    分別是從游標處向前刪除指令串 ([ctrl]+u) 及向後刪除指令串 ([ctrl]+k)。(该组合键只是在一行上的)<br>[ctrl]+a/[ctrl]+e    分別是讓游標移動到整個指令串的最前面 ([ctrl]+a) 或最後面 ([ctrl]+e)。（ctrl+a 可以删除了该游标前面的所有的东西）（Ctrl +e  只是将下一行的内容再重现）</p>
+<h6 id="3-在-shell-環境下，有個提示字元-prompt-，他可以修改嗎？要改什麼？預設的提示字元內容是？"><a href="#3-在-shell-環境下，有個提示字元-prompt-，他可以修改嗎？要改什麼？預設的提示字元內容是？" class="headerlink" title="3.在 shell 環境下，有個提示字元 (prompt)，他可以修改嗎？要改什麼？預設的提示字元內容是？"></a>3.在 shell 環境下，有個提示字元 (prompt)，他可以修改嗎？要改什麼？預設的提示字元內容是？</h6><p>可以修改，改ps1的表现形式，预设的提示字元为 ps1=’[\u@\h \W]\$’</p>
+<h6 id="4-如何顯示-HOME-這個環境變數？"><a href="#4-如何顯示-HOME-這個環境變數？" class="headerlink" title="4.如何顯示 HOME 這個環境變數？"></a>4.如何顯示 HOME 這個環境變數？</h6><p>环境变数是以大写字元表示区别与自定义的变数。 echo $HOME</p>
+<h6 id="5-如何得知目前的所有變數與環境變數的設定值"><a href="#5-如何得知目前的所有變數與環境變數的設定值" class="headerlink" title="5.如何得知目前的所有變數與環境變數的設定值"></a>5.如何得知目前的所有變數與環境變數的設定值</h6><p>env 看所有环境变数，set看自定义变数.</p>
+<h6 id="6-我是否可以設定一個變數名稱為-3myhome"><a href="#6-我是否可以設定一個變數名稱為-3myhome" class="headerlink" title="6.我是否可以設定一個變數名稱為 3myhome"></a>6.我是否可以設定一個變數名稱為 3myhome</h6><p>是的</p>
+<h6 id="7-在這樣的練習中『A-B』且『B-C』，若我下達『unset-A』，則取消的變數是-A-還是-B？"><a href="#7-在這樣的練習中『A-B』且『B-C』，若我下達『unset-A』，則取消的變數是-A-還是-B？" class="headerlink" title="7.在這樣的練習中『A=B』且『B=C』，若我下達『unset $A』，則取消的變數是 A 還是 B？"></a>7.在這樣的練習中『A=B』且『B=C』，若我下達『unset $A』，則取消的變數是 A 還是 B？</h6><p>取消的是B，unset A 与unset $A的区别。</p>
+<h6 id="8-如何取消變數與命令別名的內容？"><a href="#8-如何取消變數與命令別名的內容？" class="headerlink" title="8.如何取消變數與命令別名的內容？"></a>8.如何取消變數與命令別名的內容？</h6><p>unset 变数名  unalias  命令别名</p>
+<h6 id="9-如何設定一個變數名稱為-name-內容為-It’s-my-name-？"><a href="#9-如何設定一個變數名稱為-name-內容為-It’s-my-name-？" class="headerlink" title="9.如何設定一個變數名稱為 name 內容為 It’s my name ？"></a>9.如何設定一個變數名稱為 name 內容為 It’s my name ？</h6><p>name=”It’s my name”</p>
+<h6 id="10-bash-環境設定檔主要分為哪兩種類型的讀取？分別讀取哪些重要檔案？"><a href="#10-bash-環境設定檔主要分為哪兩種類型的讀取？分別讀取哪些重要檔案？" class="headerlink" title="10.bash 環境設定檔主要分為哪兩種類型的讀取？分別讀取哪些重要檔案？"></a>10.bash 環境設定檔主要分為哪兩種類型的讀取？分別讀取哪些重要檔案？</h6><p>source 设定档档名<br>cat 设定档<br>~/.bash_profile (login shell 才會讀)<br>~/.bashrc (non-login shell 會讀)<br>将文件放到~/bin下就类似于window 下的环境变量了。</p>
+<h6 id="11-CentOS-7-x-的-man-page-的路徑設定檔案？"><a href="#11-CentOS-7-x-的-man-page-的路徑設定檔案？" class="headerlink" title="11.CentOS 7.x 的 man page 的路徑設定檔案？"></a>11.CentOS 7.x 的 man page 的路徑設定檔案？</h6><p>/etc/man_db.conf</p>
+<h6 id="12-試說明-‘-“-與-這些符號在變數定義中的用途？"><a href="#12-試說明-‘-“-與-這些符號在變數定義中的用途？" class="headerlink" title="12.試說明 ‘, “, 與 ` 這些符號在變數定義中的用途？"></a>12.試說明 ‘, “, 與 ` 這些符號在變數定義中的用途？</h6><p>雙引號內的特殊字元如 $ 等，可以保有原本的特性（显示变量具体的值）<br>單引號內的特殊字元則僅為一般字元（变量还是显示$home这类）<br>那個 ` 是鍵盤上方的數字鍵 1 左邊那個按鍵。在一串指令的執行中，還需要藉由其他額外的指令所提供的資訊時，可以使用反單引號</p>
+<h6 id="13-跳脫符號-有什麼用途"><a href="#13-跳脫符號-有什麼用途" class="headerlink" title="13.跳脫符號 \ 有什麼用途"></a>13.跳脫符號 \ 有什麼用途</h6><p>长指令时可以下一行，\enter</p>
+<h6 id="14-連續命令中，-amp-amp-有何不同？"><a href="#14-連續命令中，-amp-amp-有何不同？" class="headerlink" title="14.連續命令中， ;, &amp;&amp;, || 有何不同？"></a>14.連續命令中， ;, &amp;&amp;, || 有何不同？</h6><p>；，结束，然后执行下一条指令，&amp;&amp;，||是判断，&amp;&amp;前一个正确，后一个执行，前一个错误，后一个不用执行，||则相反。</p>
+<h6 id="15-如何將-last-的結果中，獨立出帳號，並且印出曾經登入過的帳號？"><a href="#15-如何將-last-的結果中，獨立出帳號，並且印出曾經登入過的帳號？" class="headerlink" title="15.如何將 last 的結果中，獨立出帳號，並且印出曾經登入過的帳號？"></a>15.如何將 last 的結果中，獨立出帳號，並且印出曾經登入過的帳號？</h6><p>last | cut -d ‘ ‘ -f 1 | uniq </p>
+<h6 id="16-請問-foo1-amp-amp-foo2-foo3-gt-foo4-，這個指令串當中，-foo1-foo2-foo3-foo4-是指令還是檔案？-整串指令的意義為"><a href="#16-請問-foo1-amp-amp-foo2-foo3-gt-foo4-，這個指令串當中，-foo1-foo2-foo3-foo4-是指令還是檔案？-整串指令的意義為" class="headerlink" title="16.請問 foo1 &amp;&amp; foo2 | foo3 &gt; foo4 ，這個指令串當中， foo1/foo2/foo3/foo4 是指令還是檔案？ 整串指令的意義為"></a>16.請問 foo1 &amp;&amp; foo2 | foo3 &gt; foo4 ，這個指令串當中， foo1/foo2/foo3/foo4 是指令還是檔案？ 整串指令的意義為</h6><p>foo1,foo2,foo3为指令，foo4为档案（文件）。意义：当(当foo1为真时，执行foo2)为假时执行 foo3指令 取代foo4文件中的内容。 foo1&amp;&amp;foo2为真是才可以通过管道|输出到foo3。</p>
+<h6 id="17-如何秀出在-bin-底下任何以-a-為開頭的檔案檔名的詳細資料？"><a href="#17-如何秀出在-bin-底下任何以-a-為開頭的檔案檔名的詳細資料？" class="headerlink" title="17.如何秀出在 /bin 底下任何以 a 為開頭的檔案檔名的詳細資料？"></a>17.如何秀出在 /bin 底下任何以 a 為開頭的檔案檔名的詳細資料？</h6><p>ls | grep a*</p>
+<h6 id="18-如何秀出-bin-底下，檔名開頭不是-a-d-的檔案？"><a href="#18-如何秀出-bin-底下，檔名開頭不是-a-d-的檔案？" class="headerlink" title="18.如何秀出 /bin 底下，檔名開頭不是 a-d 的檔案？"></a>18.如何秀出 /bin 底下，檔名開頭不是 a-d 的檔案？</h6><p>ls | grep -v  a*</p>
+<h6 id="19-我想要讓終端機介面的登入提示字元修改成我自己喜好的模樣，應該要改哪裡？-filename"><a href="#19-我想要讓終端機介面的登入提示字元修改成我自己喜好的模樣，應該要改哪裡？-filename" class="headerlink" title="19.我想要讓終端機介面的登入提示字元修改成我自己喜好的模樣，應該要改哪裡？(filename)"></a>19.我想要讓終端機介面的登入提示字元修改成我自己喜好的模樣，應該要改哪裡？(filename)</h6><p>/etc/issue</p>
+<h6 id="20-承上題，如果我是想要讓使用者登入後，才顯示歡迎訊息，又應該要改哪裡？"><a href="#20-承上題，如果我是想要讓使用者登入後，才顯示歡迎訊息，又應該要改哪裡？" class="headerlink" title="20.承上題，如果我是想要讓使用者登入後，才顯示歡迎訊息，又應該要改哪裡？"></a>20.承上題，如果我是想要讓使用者登入後，才顯示歡迎訊息，又應該要改哪裡？</h6><p>/etc/motd </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://xiaoxiao12345.github.io/2017/11/14/linux-learn-10/" data-id="cjbyvkkd90002w81h7iqb4dn9" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux-learn/">linux_learn</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/14/linux-learn-12/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          linux_learn_12
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/10/myFirstBolg/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">myFirstBolg</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/conf/">conf</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/test/">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/conf/">conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux-learn/">linux_learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux-learn-12/">linux_learn_12</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/programUittest/">programUittest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pythonUnittest/">pythonUnittest</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu17-04-network/">ubuntu17.04 network</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/conf/" style="font-size: 10px;">conf</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/linux-learn/" style="font-size: 10px;">linux_learn</a> <a href="/tags/linux-learn-12/" style="font-size: 10px;">linux_learn_12</a> <a href="/tags/programUittest/" style="font-size: 10px;">programUittest</a> <a href="/tags/pythonUnittest/" style="font-size: 10px;">pythonUnittest</a> <a href="/tags/ubuntu17-04-network/" style="font-size: 10px;">ubuntu17.04 network</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/03/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/27/network/">network</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/18/phpmyadmin-conf/">phpmyadmin_conf</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/13/programUittest/">programUittest</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/30/http-thinking/">http_thinking</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 xiaoxiao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
