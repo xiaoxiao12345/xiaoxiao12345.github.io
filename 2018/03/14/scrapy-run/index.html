@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>scrapy_run | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="scrapy的架构理解五大组件：调度器，下载器，爬虫，实体管道，scrapy引擎引擎是最核心，他控制调度器，下载器和爬虫。相当于电脑的cpu。 架构原理： 引擎先打开一个网站，然后找到处理这个网站的spider，然后spider请求start_urls 里的url  url 放在调度器里作为request  引擎再请求下一个要调的url 调度返回下一个要爬取的url 给引擎 页面下载完成后（这里是">
+<meta name="keywords" content="spider">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scrapy_run">
+<meta property="og:url" content="http://yoursite.com/2018/03/14/scrapy-run/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="scrapy的架构理解五大组件：调度器，下载器，爬虫，实体管道，scrapy引擎引擎是最核心，他控制调度器，下载器和爬虫。相当于电脑的cpu。 架构原理： 引擎先打开一个网站，然后找到处理这个网站的spider，然后spider请求start_urls 里的url  url 放在调度器里作为request  引擎再请求下一个要调的url 调度返回下一个要爬取的url 给引擎 页面下载完成后（这里是">
+<meta property="og:updated_time" content="2018-03-21T10:24:04.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="scrapy_run">
+<meta name="twitter:description" content="scrapy的架构理解五大组件：调度器，下载器，爬虫，实体管道，scrapy引擎引擎是最核心，他控制调度器，下载器和爬虫。相当于电脑的cpu。 架构原理： 引擎先打开一个网站，然后找到处理这个网站的spider，然后spider请求start_urls 里的url  url 放在调度器里作为request  引擎再请求下一个要调的url 调度返回下一个要爬取的url 给引擎 页面下载完成后（这里是">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-scrapy-run" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/14/scrapy-run/" class="article-date">
+  <time datetime="2018-03-14T08:29:14.000Z" itemprop="datePublished">2018-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      scrapy_run
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="scrapy的架构理解"><a href="#scrapy的架构理解" class="headerlink" title="scrapy的架构理解"></a>scrapy的架构理解</h1><h2 id="五大组件："><a href="#五大组件：" class="headerlink" title="五大组件："></a>五大组件：</h2><p>调度器，下载器，爬虫，实体管道，scrapy引擎<br>引擎是最核心，他控制调度器，下载器和爬虫。相当于电脑的cpu。</p>
+<h2 id="架构原理："><a href="#架构原理：" class="headerlink" title="架构原理："></a>架构原理：</h2><ol>
+<li>引擎先打开一个网站，然后找到处理这个网站的spider，然后spider请求start_urls 里的url </li>
+<li>url 放在调度器里作为request </li>
+<li>引擎再请求下一个要调的url</li>
+<li>调度返回下一个要爬取的url 给引擎</li>
+<li>页面下载完成后<em>（这里是指所有页面吗？）</em>，下载器生成这个也的response,再通过下载中间件返回response方向 给引擎。</li>
+<li>引擎从下载器收到response 后通过spider中间件输入方向，送给spider 处理。</li>
+<li>spider 返回爬到的item 给item pipeline, spider返回的request返回给调度器。</li>
+<li>重复调度知道没有url ，引擎关闭。</li>
+</ol>
+<p>xpath</p>
+<p>选择：item[‘title’] = sel.xpath(“.//div/div/div/a[@title]/text()”).extract()</p>
+<pre><code>结果：[{&quot;title&quot;: [&quot; \u88f8\u673a\u4e91\u670d\u52a1\u662f\u4e91\u8ba1\u7b97\u7684\u4e0b\u4e00\u4e2a\u98ce\u53e3\t\t\t\t\t&quot;, &quot; 5\u5f20\u80f6\u7247\u770b\u6e05\u7f51\u7edc\u4ea4\u6362\u673a\u768&quot;]}]
+</code></pre><p>选择：item[‘title’] = sel.xpath(“.//div/div/div/a[@title]/text()”)[0][“title”].extract()</p>
+<pre><code>结果： &apos;Selector&apos; object has no attribute &apos;__getitem__&apos;
+</code></pre><p>选择：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/14/scrapy-run/" data-id="cjia4zd4u00005gup5ucwn1my" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spider/">spider</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/spider/">spider</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/spider/" style="font-size: 10px;">spider</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/14/scrapy-run/">scrapy_run</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
